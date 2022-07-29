@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <context:component-scan base-package="cn.dsscm.controller" />
+
+   <!-- <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+            <bean
+                    class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json</value>
+                    </list>
+                </property>
+                <property name="features">
+                    <list>
+                        &lt;!&ndash; Date的日期转换器 &ndash;&gt;
+                        <value>WriteDateUseDateFormat</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <mvc:resources location="/statics/" mapping="/statics/**"></mvc:resources>
+
+    &lt;!&ndash; 配置多视图解析器：允许同样的内容数据呈现不同的view &ndash;&gt;
+    <bean
+            class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="favorParameter" value="true" />
+        <property name="defaultContentType" value="text/html" />
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html;charset=UTF-8" />
+                <entry key="json" value="application/json;charset=UTF-8" />
+                <entry key="xml" value="application/xml;charset=UTF-8" />
+            </map>
+        </property>
+        <property name="viewResolvers">
+            <list>
+                <bean
+                        class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="prefix" value="/WEB-INF/jsp/" />
+                    <property name="suffix" value=".jsp" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    &lt;!&ndash; 配置interceptors &ndash;&gt;
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/sys/**" />
+            <bean class="cn.dsscm.interceptor.SysInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    &lt;!&ndash; 配置MultipartResolver，用于上传文件，使用spring的CommonsMultipartResolver &ndash;&gt;
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="5000000" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>-->
+    <!--<bean id="usedao" class="com.jin.dao.impl.userdaoimpl" init-method="init" destroy-method="detory" scope=""></bean>-->
+ <!--<bean id="factory" class="com.jin.dao.factory.Staticfactory"  factory-method="getuserdao" init-method="init" >
+
+ </bean>-->
+   <!-- <bean id="factory"  class="com.jin.dao.factory.factory1"></bean>
+    <bean id="usedao"  factory-bean="factory" factory-method="getuserdao"></bean>-->
+    <!--<bean id="usedao" class="com.jin.dao.impl.userdaoimpl" >
+        <property name="username" value="zhangsan"/>
+        <property name="age" value="18"/>
+    </bean>-->
+     <!--<bean id="userservice" class="com.jin.dao.service.impl.userservceimpl">
+         <property name="usedao" ref="usedao"></property>
+     </bean>-->
+    <bean id="userservice" class="com.jin.dao.service.impl.userservceimpl" >
+      <constructor-arg name="usedao" ref="usedao"></constructor-arg>
+    </bean>
+    <bean id="usedao" class="com.jin.dao.impl.userdaoimpl" >
+        <property name="list" >
+            <list ><value>11</value>
+                <value>12</value>
+                <value>12</value>
+            </list>
+
+        </property>
+        <property name="hashmap" >
+            <map>
+                <entry key="1" value-ref="user1"></entry>
+                <entry key="2" value-ref="user2"></entry>
+            </map>
+        </property>
+    </bean>
+    <bean id="user1" class="com.jin.dao.service.impl.user">
+        <property name="name" value="shuyu"></property>
+        <property name="adres" value="yongchao"></property>
+    </bean>
+    <bean id="user2" class="com.jin.dao.service.impl.user">
+        <property name="name" value="shu"></property>
+        <property name="adres" value="yongchao"></property>
+    </bean>
+
+    
+</beans>
