@@ -1,0 +1,18 @@
+server:
+  port: 8082
+name: adb
+people:
+  name: zhangdsan
+  age: 24
+  adress:
+    - beijing
+    - zhoukou
+    - shanghai
+    - hangzhou
+people2: {name: zhangsan,age: 24}
+adress:
+  - beijing
+  - zhoukou
+  - shanghai
+  - hangzhou
+adress2: [beijing,shanghai,zhoukou]
