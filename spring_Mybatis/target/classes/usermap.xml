@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.jin.dao.userdao">
+    <sql id="select">  select * from user</sql>
+    <select id="findall" resultType="cn.jin.domain.user">
+        select * from user  <!--<include refid="select"/>-->
+    </select>
+    <insert id="insert" parameterType="cn.jin.domain.user">
+        insert into user values(#{id},#{username},#{password})
+    </insert>
+    <update id="update" parameterType="cn.jin.domain.user">
+        update user set username=#{username} where id= #{id}
+    </update>
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete  from user where id=#{id}
+    </delete>
+</mapper>

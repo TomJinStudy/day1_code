@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <properties resource="jdbc1.properties"></properties>
+    <!--自定义bieming-->
+    <typeAliases> 
+    <typeAlias type="cn.jin.domain.user" alias="user"></typeAlias> </typeAliases>
+    <!--插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageHelper">
+            <property name="dialect" value="mysql"/>
+        </plugin>
+    </plugins>
+    <environments default="enviroment">
+        <environment id="enviroment">
+            <transactionManager type="JDBC"></transactionManager>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+<!--    <mapper resource="usermap.xml"></mapper>-->
+<!--        <mapper class="cn.jin.dao.userdao"></mapper>-->
+    </mappers>
+</configuration>
